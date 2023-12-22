@@ -1,34 +1,48 @@
+// Targeting html elements by ID
 var gameStartDiv = document.querySelector("#start-screen");
 var gameStart = document.querySelector("#start");
 var choicesDiv = document.querySelector("#choices");
-var randomQuestionIdex;
 var questionsDiv = document.querySelector("#questions");
 var questionTitle = document.querySelector("#question-title");
 var endScreen = document.querySelector("#end-screen");
 var timeTracker = document.querySelector("#time");
 var endScreenDiv = document.querySelector("#end-screen");
-var correctAnswerBoolean;
-var startingTime = 75;
-var timeInterval;
-timeTracker.textContent = startingTime;
-var score;
-var highScore;
 var finalScore = document.querySelector("#final-score");
 var initials = document.querySelector("#initials");
 var highScoreButton = document.querySelector("#submit");
+// General variables
+var randomQuestionIdex;
+var correctAnswerBoolean;
+var startingTime = 100;
+var timeInterval;
+var score;
+// Setting initial timer
+timeTracker.textContent = startingTime;
+
+/* +++++++++++++++++++++++ 
+          Functions
+   +++++++++++++++++++++++*/
+
+function hideStartGame() {
+  gameStartDiv.setAttribute("class", "hide");
+}
 
 var alertMessage = document.createElement("p");
 
+function addToArr() {}
 highScoreButton.addEventListener("click", function () {
   if (initials.value !== "" && initials.value.length <= 3) {
-    var highScoreData = {
-      score: `${score}`,
-      initials: `${initials.value}`,
-    };
-    var highScireJsonString = JSON.stringify(highScoreData);
+    // Retrieve existing array from local storage or create a new one
+    var storedResultsArr = JSON.parse(localStorage.getItem("resultsArr")) || [];
 
-    localStorage.setItem("highScoreData", highScireJsonString);
+    // Push the current initials and score values as an object into the array
+    storedResultsArr.push({ initials: initials.value, score: score });
+
+    // Store the updated array in local storage
+    localStorage.setItem("resultsArr", JSON.stringify(storedResultsArr));
+
     alertMessage.textContent = "";
+    // Redirects page to highscores.html
     var highScorePage = "highscores.html";
     window.location.href = highScorePage;
   } else if (initials.value.length > 3) {
@@ -46,10 +60,6 @@ gameStart.addEventListener("click", function (event) {
   hideStartGame();
   countdown();
 });
-
-function hideStartGame() {
-  gameStartDiv.setAttribute("class", "hide");
-}
 
 function randomQuestion(arr) {
   randomQuestionIdex = Math.floor(Math.random() * arr.length);
