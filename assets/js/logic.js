@@ -72,8 +72,8 @@ function removeAllElements(parentNode) {
   }
 }
 // Disables button functionality for all buttons on the page
-function disableButton() {
-  var buttons = document.querySelectorAll(".answer-button");
+function disableButton(className) {
+  var buttons = document.querySelectorAll("." + className);
   buttons.forEach((button) => {
     button.disabled = true;
   });
@@ -126,7 +126,7 @@ function displayCorrectAnswer() {
     answer.style.color = "green";
     choicesDiv.appendChild(answer);
     // All buttons with class "answer-button" are disabled so it can't be clicked again until new question will appear
-    disableButton();
+    disableButton("answer-button");
     // There is a delay of 1 sec. for user to check if answer was correct or wrong until all buttons and question disapears
     setTimeout(() => {
       removeAllElements(choicesDiv);
@@ -161,7 +161,7 @@ function displayCorrectAnswer() {
     answer.style.color = "red";
     choicesDiv.appendChild(answer);
     // All buttons with class "answer-button" are disabled so it can't be clicked again until new question will appear
-    disableButton();
+    disableButton("answer-button");
     // There is a delay of 1 sec. for user to check if answer was correct or wrong until all buttons and question disapears
     setTimeout(() => {
       removeAllElements(choicesDiv);

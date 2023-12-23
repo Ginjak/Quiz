@@ -19,8 +19,6 @@ storedResultsArr.forEach(function (result) {
 
   // Append the new li element to the ordered list
   highScoresOl.appendChild(liEl);
-
-  console.log(`Initials: ${initials}, Score: ${score}`);
 });
 
 // Clear high score
