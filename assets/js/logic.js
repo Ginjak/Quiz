@@ -17,6 +17,7 @@ var startingTime = 100;
 var timeInterval;
 var score;
 var alertMessage = document.createElement("p");
+var warningMessage = document.createElement("p");
 // Setting initial timer
 timeTracker.textContent = startingTime;
 
@@ -198,16 +199,18 @@ function displayCorrectAnswer() {
    +++++++++++++++++++++++*/
 
 // Click event on Start Quiz button, call functions displayQuestion, hideStartGame, countdown. If quiz option not select message will appear
-var warningMessage = document.createElement("p");
+
 gameStart.addEventListener("click", function (event) {
   event.stopPropagation();
   if (questionsArr.length === 0) {
+    // If questionsArr is empty message will be displayed, class is added to start button and it is disabled.
     warningMessage.textContent = "Please, select Quiz type";
     warningMessage.style.color = "red";
     gameStartDiv.appendChild(warningMessage);
     gameStart.disabled = true;
     gameStart.classList.add("clicked");
   } else {
+    //Game starts if condition is met
     displayQuestion();
     hideStartGame();
     countdown();
