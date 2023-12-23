@@ -210,7 +210,8 @@ gameStart.addEventListener("click", function (event) {
   if (questionsArr.length === 0) {
     // If questionsArr is empty message will be displayed, class is added to start button and it is disabled.
     warningMessage.textContent = "Please, select Quiz type";
-    warningMessage.style.color = "red";
+    warningMessage.style.color = "#ED474A";
+    warningMessage.style.marginTop = "20px";
     gameStartDiv.appendChild(warningMessage);
     gameStart.disabled = true;
     gameStart.classList.add("clicked");
@@ -235,7 +236,9 @@ highScoreButton.addEventListener("click", function () {
     localStorage.setItem("resultsArr", JSON.stringify(storedResultsArr));
     // Thank you message display for 1 sec and page redirects to highscores.html
     alertMessage.textContent = "Thank you";
-    alertMessage.style.color = "green";
+    alertMessage.style.color = "#478978";
+    alertMessage.style.paddingLeft = "5px";
+    alertMessage.style.marginTop = "10px";
     endScreenDiv.appendChild(alertMessage);
     // Redirects page to highscores.html
     setTimeout(() => {
@@ -246,11 +249,16 @@ highScoreButton.addEventListener("click", function () {
   } else if (initials.value.length > 3) {
     // Warning message appears
     alertMessage.textContent = "Please, enter no more then three letters";
-    alertMessage.style.color = "red";
+    alertMessage.style.color = "#ED474A";
+    alertMessage.style.paddingLeft = "5px";
+    alertMessage.style.marginTop = "10px";
     endScreenDiv.appendChild(alertMessage);
   } else {
     // If input is blank warning message will appear
     alertMessage.textContent = "Please, enter your initials";
+    alertMessage.style.color = "#ED474A";
+    alertMessage.style.paddingLeft = "5px";
+    alertMessage.style.marginTop = "10px";
     endScreenDiv.appendChild(alertMessage);
   }
 });
