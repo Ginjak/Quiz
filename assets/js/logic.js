@@ -99,12 +99,15 @@ function countdown() {
 // Function to check if correct answer was clicked, if so displayCorrectAnswer() is called (it checks if object key is equal to "correct")
 function handleButtonClick(event) {
   var key = event.target.key;
+  // Check wich button was clicked
+  var clickedButton = event.target;
   if (key === "correct") {
     correctAnswerBoolean = true;
   } else {
     correctAnswerBoolean = false;
   }
-
+  // Adds class "clicked" to a clicked button
+  clickedButton.classList.add("clicked");
   // Display the correct answer
   displayCorrectAnswer();
 }
@@ -121,10 +124,11 @@ function displayCorrectAnswer() {
     );
     // When question string is updated it is displayed again
     questionTitle.textContent = updatedQuestion;
-    // When answer is correct message below buttons appears "Correct answer!" and color is green
+    // When answer is correct message below buttons appears "Correct answer!"
     var answer = document.createElement("p");
     answer.textContent = "Correct answer!";
-    answer.style.color = "green";
+    answer.style.color = "#478978";
+    answer.style.paddingLeft = "17px";
     choicesDiv.appendChild(answer);
     // All buttons with class "answer-button" are disabled so it can't be clicked again until new question will appear
     disableButton("answer-button");
@@ -159,7 +163,8 @@ function displayCorrectAnswer() {
     // When answer is wrong message below buttons appears "Wrong answer!" and color is red
     answer = document.createElement("p");
     answer.textContent = "Wrong answer!";
-    answer.style.color = "red";
+    answer.style.color = "#ED474A";
+    answer.style.paddingLeft = "17px";
     choicesDiv.appendChild(answer);
     // All buttons with class "answer-button" are disabled so it can't be clicked again until new question will appear
     disableButton("answer-button");

@@ -80,13 +80,6 @@ var animals = [
     answerThree: "Camel",
   },
   {
-    question: `11`,
-    correct: "Sloth",
-    answerOne: "Python",
-    answerTwo: "Koala",
-    answerThree: "Camel",
-  },
-  {
     question: `What do snakes use to smell?`,
     correct: "Tongue",
     answerOne: "Eyes",
