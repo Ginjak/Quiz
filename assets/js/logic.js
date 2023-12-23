@@ -197,12 +197,21 @@ function displayCorrectAnswer() {
           Event Listeners
    +++++++++++++++++++++++*/
 
-// Click event on Start Quiz button, call functions displayQuestion, hideStartGame, countdown
+// Click event on Start Quiz button, call functions displayQuestion, hideStartGame, countdown. If quiz option not select message will appear
+var warningMessage = document.createElement("p");
 gameStart.addEventListener("click", function (event) {
   event.stopPropagation();
-  displayQuestion();
-  hideStartGame();
-  countdown();
+  if (questionsArr.length === 0) {
+    warningMessage.textContent = "Please, select Quiz type";
+    warningMessage.style.color = "red";
+    gameStartDiv.appendChild(warningMessage);
+    gameStart.disabled = true;
+    gameStart.classList.add("clicked");
+  } else {
+    displayQuestion();
+    hideStartGame();
+    countdown();
+  }
 });
 
 // Click event on submit button. To submit players Initials and final score to local storage

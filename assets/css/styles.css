@@ -29,6 +29,9 @@ button {
 button:hover {
   background-color: #8570a5;
 }
+.clicked {
+  background-color: #8570a5;
+}
 
 .choices button {
   display: block;
