@@ -10,6 +10,7 @@ var endScreenDiv = document.querySelector("#end-screen");
 var finalScore = document.querySelector("#final-score");
 var initials = document.querySelector("#initials");
 var highScoreButton = document.querySelector("#submit");
+var gameOverDiv = document.querySelector(".game-over");
 // General variables
 var randomQuestionIdex;
 var correctAnswerBoolean;
@@ -28,6 +29,13 @@ timeTracker.textContent = startingTime;
 // Adds hide class to "Coding Quiz Challenge" (hides whole div)
 function hideStartGame() {
   gameStartDiv.setAttribute("class", "hide");
+}
+
+// Game over, function removes "hide" class from game-over div.
+function gameOver() {
+  if (startingTime < 1) {
+    gameOverDiv.classList.remove("hide");
+  }
 }
 
 // Generates random number between 0 and array length
@@ -89,8 +97,10 @@ function countdown() {
     } else if (startingTime === 1) {
       startingTime--;
       timeTracker.textContent = `${startingTime} `;
-    } else if (startingTime === 0) {
+    } else if (startingTime === 0 || startingTime < 0) {
+      timeTracker.textContent = 0;
       clearInterval(timeInterval);
+      gameOver();
     }
     //
   }, 1000);
@@ -176,19 +186,25 @@ function displayCorrectAnswer() {
     questionsArr.splice(randomQuestionIdex, 1);
     // If there are no more questions left and time is not 0
     if (questionsArr.length === 0 && timeInterval > 0) {
-      // Deduct 10 points, because answer was wrong
-      startingTime = startingTime - 10;
+      // Deduct 10 points, because answer was wrong and prevents finals score to be negative
+      startingTime = Math.max(0, startingTime - 10);
       // Final score registered
       score = startingTime;
       // Countdown stops
+      finalScore.textContent = score;
+      // Timmer updated to a final score
+      timeTracker.textContent = score;
       clearInterval(timeInterval);
       // Adding class hide to questions div (to hide questions and answers). Class hide removed from end screen div (score and input field displayed). Also has 1 sec delay
+      if (score === 0) {
+        gameOver();
+      }
       setTimeout(() => {
         questionsDiv.setAttribute("class", "hide");
         endScreen.setAttribute("class", "");
       }, 1000);
+
       // Score is displayed
-      finalScore.textContent = score;
       return;
     }
     // If there are still questions in array, new question displayed (with 1 sec delay for smooth transition) and 10 points deducted from countdown
