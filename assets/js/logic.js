@@ -198,7 +198,11 @@ function displayCorrectAnswer() {
       // Adding class hide to questions div (to hide questions and answers). Class hide removed from end screen div (score and input field displayed). Also has 1 sec delay
       if (score === 0) {
         gameOver();
+        questionTitle.textContent = "";
+        questionsDiv.setAttribute("class", "hide");
+        return;
       }
+
       setTimeout(() => {
         questionsDiv.setAttribute("class", "hide");
         endScreen.setAttribute("class", "");
