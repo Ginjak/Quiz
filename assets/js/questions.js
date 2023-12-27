@@ -439,7 +439,6 @@ function chooseQuiz(event) {
     carsQuiz.classList.add("clicked");
     gameStart.disabled = false;
     randomQuestionSelection(clickedBtnId, cars);
-    console.log(questionsArr);
     if (gameStartDiv.contains(warningMessage)) {
       gameStartDiv.removeChild(warningMessage);
       gameStart.classList.remove("clicked");
@@ -450,7 +449,6 @@ function chooseQuiz(event) {
     gameStart.disabled = false;
     jsQuiz.classList.add("clicked");
     randomQuestionSelection(clickedBtnId, js);
-    console.log(questionsArr);
     if (gameStartDiv.contains(warningMessage)) {
       gameStartDiv.removeChild(warningMessage);
       gameStart.classList.remove("clicked");
@@ -461,7 +459,6 @@ function chooseQuiz(event) {
     gameStart.disabled = false;
     cssQuiz.classList.add("clicked");
     randomQuestionSelection(clickedBtnId, css);
-    console.log(questionsArr);
     if (gameStartDiv.contains(warningMessage)) {
       gameStartDiv.removeChild(warningMessage);
       gameStart.classList.remove("clicked");
