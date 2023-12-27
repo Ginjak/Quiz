@@ -20,7 +20,7 @@ storedResultsArr.forEach(function (result) {
   highScoresOl.appendChild(liEl);
 });
 
-// Clear high score
+// Clear high score.
 clearButton.addEventListener("click", function () {
   localStorage.clear();
   while (highScoresOl.firstChild) {
