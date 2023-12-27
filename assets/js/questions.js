@@ -295,13 +295,6 @@ var js = [
     answerThree: "None of the above",
   },
   {
-    question: `js 12`,
-    correct: "Sloth",
-    answerOne: "Python",
-    answerTwo: "Koala",
-    answerThree: "Camel",
-  },
-  {
     question: `What does … operator do in JS?`,
     answerOne: "No such operator exists",
     answerTwo: "Closes web browser",

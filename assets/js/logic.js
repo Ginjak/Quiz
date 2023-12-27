@@ -19,7 +19,8 @@ var timeInterval;
 var score;
 var alertMessage = document.createElement("p");
 var warningMessage = document.createElement("p");
-// Setting initial timer
+
+// Setting initial timer text
 timeTracker.textContent = startingTime;
 
 /* +++++++++++++++++++++++ 
@@ -65,7 +66,7 @@ function displayQuestion() {
     var choiceButton = document.createElement("button");
     choiceButton.classList.add("answer-button");
     choiceButton.textContent = `${buttonNumber}. ${questionsArr[randomQuestionIdex][answer]}`;
-    // assings a key for each button. It helps to track correct answer later
+    // Assings a key for each button. It helps to track correct answer later
     choiceButton.key = answer;
     choicesDiv.appendChild(choiceButton);
     // When newly created buttons are clicked function handleButtonClick is called
@@ -100,6 +101,8 @@ function countdown() {
     } else if (startingTime === 0 || startingTime < 0) {
       timeTracker.textContent = 0;
       clearInterval(timeInterval);
+      removeAllElements(choicesDiv);
+      questionsDiv.setAttribute("class", "hide");
       gameOver();
     }
     //
@@ -122,6 +125,19 @@ function handleButtonClick(event) {
   displayCorrectAnswer();
 }
 
+// Function to play a correct sound
+function correctAudio() {
+  var trueAudio = new Audio();
+  trueAudio.src = "assets/sfx/correct.wav";
+  trueAudio.play();
+}
+// Function to play a wrong sound
+function wrongAudio() {
+  var incorrectAudio = new Audio();
+  incorrectAudio.src = "assets/sfx/incorrect.wav";
+  incorrectAudio.play();
+}
+
 function displayCorrectAnswer() {
   // Variable for the value of correct answer
   var correctAnswer = questionsArr[randomQuestionIdex].correct;
@@ -134,6 +150,8 @@ function displayCorrectAnswer() {
     );
     // When question string is updated it is displayed again
     questionTitle.textContent = updatedQuestion;
+    // When aswer is correct play a sound of correct answer
+    correctAudio();
     // When answer is correct message below buttons appears "Correct answer!"
     var answer = document.createElement("p");
     answer.textContent = "Correct answer!";
@@ -170,6 +188,8 @@ function displayCorrectAnswer() {
     }, 1000);
     // Condition is answer is wrong
   } else {
+    // Incorrect sound played when asnwer is incorrect
+    wrongAudio();
     // When answer is wrong message below buttons appears "Wrong answer!" and color is red
     answer = document.createElement("p");
     answer.textContent = "Wrong answer!";
@@ -268,7 +288,7 @@ highScoreButton.addEventListener("click", function () {
     // If player input more then 3 characters in initials input field
   } else if (initials.value.length > 3) {
     // Warning message appears
-    alertMessage.textContent = "Please, enter no more then three letters";
+    alertMessage.textContent = "Please, enter no more then three characters";
     alertMessage.style.color = "#ED474A";
     alertMessage.style.paddingLeft = "5px";
     alertMessage.style.marginTop = "10px";

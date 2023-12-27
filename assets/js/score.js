@@ -1,6 +1,5 @@
 var clearButton = document.querySelector("#clear");
 var highScoresOl = document.querySelector("#highscores");
-
 var storedResultsArr = JSON.parse(localStorage.getItem("resultsArr")) || [];
 
 // Sorting array from highest score to lowest
